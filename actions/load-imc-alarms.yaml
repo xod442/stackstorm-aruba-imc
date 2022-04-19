@@ -3,7 +3,7 @@ name: load-imc-alarms
 pack: arubaimc
 description: load Aruba IMC alarms into the mongo db
 runner_type: python-script
-entry_point: load-imc_alarms.py
+entry_point: load-imc-alarms.py
 enabled: true
 parameters:
   alarms:

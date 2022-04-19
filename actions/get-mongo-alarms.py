@@ -73,7 +73,7 @@ class GetDb(MongoBaseAction):
             new_alarm['parentId'] = alarm['parentId']
             new_alarm['somState'] = alarm['somState']
             new_alarm['remark'] = alarm['remark']
-            new_alarm['holdInfo'] = alarm'holdInfo']
+            new_alarm['holdInfo'] = alarm['holdInfo']
             new_alarm['repeats'] = alarm['repeats']
             new_alarm['resSourceType'] = alarm['resSourceType']
             new_alarm['alarmDetail'] = alarm['alarmDetail']
