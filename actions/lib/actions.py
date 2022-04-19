@@ -36,7 +36,7 @@ class ArubaImcBaseAction(Action):
         imc_user = self.config['username']
         imc_password = self.config['password']
 
-        auth = IMCAuth("http://", imc_host, "8080", imc_user, imc_passwd)
+        auth = IMCAuth("http://", imc_host, "8080", imc_user, imc_password)
 
         return auth
 
