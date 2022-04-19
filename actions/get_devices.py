@@ -41,7 +41,11 @@ class Devices(ArubaImcBaseAction):
     def run(self):
         device_list = []
         # Get Devices
-        devices = get_all_devs(auth.creds, auth.url)
+        devices = get_all_devs(self.auth.creds, self.auth.url)
+
+        # Check to see if we only got one entry from IMC in the form of a dict
+        if isinstance(devices, dict):
+            devices = [devices]
 
         for item in devices:
             info = [

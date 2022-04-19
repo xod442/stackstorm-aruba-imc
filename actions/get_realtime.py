@@ -41,7 +41,11 @@ class AlarmData(ArubaImcBaseAction):
     def run(self):
         alarm_list = []
         # The word admin tells IMC you want all of the alarms
-        realtime = get_realtime_alarm('admin', auth.creds, auth.url)
+        realtime = get_realtime_alarm('admin', self.auth.creds, self.auth.url)
+
+        # Check to see if we only got one entry from IMC in the form of a dict
+        if isinstance(realtime, dict):
+            realtime = [realtime]
 
         for item in realtime:
             info = [

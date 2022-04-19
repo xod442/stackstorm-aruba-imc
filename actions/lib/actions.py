@@ -29,9 +29,9 @@ __all__ = [
 class ArubaImcBaseAction(Action):
     def __init__(self, config):
         super(ArubaImcBaseAction, self).__init__(config=config)
-        self.client = self._get_client()
+        self.auth = self._get_auth()
 
-    def _get_client(self):
+    def _get_auth(self):
         imc_host = self.config['host']
         imc_user = self.config['username']
         imc_password = self.config['password']

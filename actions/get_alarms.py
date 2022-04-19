@@ -42,6 +42,9 @@ class AlarmData(ArubaImcBaseAction):
         alarm_list = []
         # The word admin tells IMC you want all of the alarms
         alarms = get_alarms('admin', self.auth.creds, self.auth.url)
+        # Check to see if we only got one entry from IMC in the form of a dict
+        if isinstance(alarms, dict):
+            alarms = [alarms]
 
         for item in alarms:
             info = [

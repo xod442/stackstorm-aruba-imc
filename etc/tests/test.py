@@ -21,11 +21,10 @@ count = 1
 # Get real time alarms from IMC
 print(auth)
 alarms = get_alarms('admin', auth.creds, auth.url)
-
+print('--------------get_alarms------<<<<<<<<<>>>>>>>>>>>----------------------')
 print(alarms)
 print(len(alarms))
 print(type(alarms))
-print('------------------------------<<<<<<<<<>>>>>>>>>>>----------------------')
 print('------------------------------<<<<<<<<<>>>>>>>>>>>----------------------')
 
 realtime = get_realtime_alarm('admin', auth.creds, auth.url)
