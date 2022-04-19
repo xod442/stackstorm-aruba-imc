@@ -37,7 +37,7 @@ __all__ = [
 class GetDb(MongoBaseAction):
     def run(self):
 
-        mydb = self.dbclient["app_db"]
+        mydb = self.dbclient["arubaimc"]
         known = mydb["imc_alarms"]
 
         list_to_process = []

@@ -26,7 +26,7 @@ print(alarms)
 print(len(alarms))
 print(type(alarms))
 print('------------------------------<<<<<<<<<>>>>>>>>>>>----------------------')
-
+'''
 realtime = get_realtime_alarm('admin', auth.creds, auth.url)
 print(realtime)
 print(len(realtime))
@@ -43,7 +43,7 @@ print('------------------------------<<<<<<<<<>>>>>>>>>>>----------------------'
 
 for item in devices:
     print(item['label'])
-'''
+
 for alarm in alarms:
 
     print(alarm)
