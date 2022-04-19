@@ -1,0 +1,11 @@
+---
+name: process_devices
+pack: arubaimc
+description: Set the process flag in the mongo database for devices to yes
+runner_type: python-script
+entry_point: process_devices.py
+enabled: true
+parameters:
+  devices:
+    required: true
+    type: array

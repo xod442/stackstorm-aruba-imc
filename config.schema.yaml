@@ -1,0 +1,15 @@
+---
+host:
+  description: "IP address of the of the Aruba IMC Server (e.g.: 'fqdn.to.device' or '10.10.10.10')"
+  type: "string"
+  secret: false
+  required: true
+username:
+  description: "Username"
+  type: "string"
+  required: true
+password:
+  description: "Password"
+  type: "string"
+  secret: true
+  required: true

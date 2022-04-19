@@ -1,0 +1,7 @@
+---
+name: get_devices
+pack: arubaimc
+description: Get an array of all devices from Aruba IMC
+runner_type: python-script
+entry_point: get_devices.py
+enabled: true

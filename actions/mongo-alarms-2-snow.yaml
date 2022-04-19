@@ -1,0 +1,6 @@
+---
+name: mongo-alarms-2-snow
+description: A workflow for sending Aruba IMC alarms from mongo to snow.
+runner_type: orquesta
+entry_point: workflows/mongo-alarms-2-snow.yaml
+enabled: true

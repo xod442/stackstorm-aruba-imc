@@ -1,0 +1,13 @@
+---
+ref: arubaimc
+name: arubaimc
+description: Aruba IMC Integration Pack
+keywords:
+  - Intelligent Management Center
+  - Network Management
+  - Automation
+version: 0.1.0
+python_versions:
+  - "3"
+author: Rick Kauffman
+email: rick@rickkauffman.com

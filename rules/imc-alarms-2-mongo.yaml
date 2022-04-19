@@ -1,0 +1,13 @@
+---
+name: "imc-alarms2-mongo"
+description: "Get all Aruba IMC alarms and send to mongo."
+enabled: false
+
+trigger:
+  type: "core.st2.IntervalTimer"
+  parameters:
+    delta: 5
+    unit: minutes
+
+action:
+  ref: "arubaimc.imc-alarms-2-mongo"

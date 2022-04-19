@@ -1,0 +1,7 @@
+---
+name: get_realtime
+pack: arubaimc
+description: Get an array of all Realtime alarms from Aruba IMC
+runner_type: python-script
+entry_point: get_realtime.py
+enabled: true

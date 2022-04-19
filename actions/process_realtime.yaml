@@ -1,0 +1,11 @@
+---
+name: process_realtime
+pack: arubaimc
+description: Set the process flag in the mongo database for realtimne alarms to yes
+runner_type: python-script
+entry_point: process_realtime.py
+enabled: true
+parameters:
+  realtime:
+    required: true
+    type: array
