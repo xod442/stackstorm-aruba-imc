@@ -1,0 +1,7 @@
+---
+name: get-mongo-alarms
+pack: arubaimc
+description: Get Aruba IMC alarms from mongo db
+runner_type: python-script
+entry_point: get-mongo-alarms.py
+enabled: true

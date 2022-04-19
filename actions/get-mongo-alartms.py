@@ -38,29 +38,48 @@ class GetDb(MongoBaseAction):
     def run(self):
 
         mydb = self.dbclient["app_db"]
-        known = mydb["morpheuslogs"]
+        known = mydb["imc_alarms"]
 
         list_to_process = []
-        log = {}
+        alarm = {}
 
         myquery = {"u_process": 'no'}
         records = list(known.find(myquery))
 
-        for r in records:
-            log['u_typeCode'] = r['u_typeCode']
-            log['u_ts'] = r['u_ts']
-            log['u_level'] = r['u_level']
-            log['u_sourceType'] = r['u_sourceType']
-            log['u_message'] = r['u_message']
-            log['u_hostname'] = r['u_hostname']
-            log['u_title'] = r['u_title']
-            log['u_logSignature'] = r['u_logSignature']
-            log['u_objectId'] = r['u_objectId']
-            log['u_seq'] = r['u_seq']
-            log['u_id'] = r['u_id']
-            log['u_signatureVerified'] = r['u_signatureVerified']
-            log = json.dumps(log)
-            list_to_process.append(log)
-            log = {}
+        for alarm in records:
+            new_alarm['id'] = alarm['id']
+            new_alarm['OID'] = alarm['OID']
+            new_alarm['originalType'] = alarm['originalType']
+            new_alarm['originalTypeDesc'] = alarm['originalTypeDesc']
+            new_alarm['deviceId'] = alarm['deviceId']
+            new_alarm['deviceIp'] = alarm['deviceIp']
+            new_alarm['deviceName'] = alarm['deviceName']
+            new_alarm['alarmLevel'] = alarm['alarmLevel']
+            new_alarm['alarmLevelDesc'] = alarm['alarmLevelDesc']
+            new_alarm['alarmCategory'] = alarm['alarmCategory']
+            new_alarm['faultTime'] = alarm['faultTime']
+            new_alarm['faultTimeDesc'] = alarm['faultTimeDesc']
+            new_alarm['recTime'] = alarm['recTime']
+            new_alarm['recTimeDesc'] = alarm['recTimeDesc']
+            new_alarm['recStatus'] = alarm['recStatus']
+            new_alarm['recStatusDesc'] = alarm['recStatusDesc']
+            new_alarm['recUserName'] = alarm['recUserName']
+            new_alarm['ackTime'] = alarm['ackTime']
+            new_alarm['ackTimeDesc'] = alarm['ackTimeDesc']
+            new_alarm['ackStatus'] = alarm['ackStatus']
+            new_alarm['ackStatusDesc'] = alarm['ackStatusDesc']
+            new_alarm['ackUserName'] = alarm['ackUserName']
+            new_alarm['alarmDesc'] = alarm['alarmDesc']
+            new_alarm['parentId'] = alarm['parentId']
+            new_alarm['somState'] = alarm['somState']
+            new_alarm['remark'] = alarm['remark']
+            new_alarm['holdInfo'] = alarm'holdInfo']
+            new_alarm['repeats'] = alarm['repeats']
+            new_alarm['resSourceType'] = alarm['resSourceType']
+            new_alarm['alarmDetail'] = alarm['alarmDetail']
+            new_alarm['process'] = 'no'
+            info = json.dumps(new_alarm)
+            list_to_process.append(info)
+            new_alarm = {}
 
         return (list_to_process)
