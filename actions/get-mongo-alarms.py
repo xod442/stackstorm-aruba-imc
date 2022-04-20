@@ -41,45 +41,45 @@ class GetDb(MongoBaseAction):
         known = mydb["imc_alarms"]
 
         list_to_process = []
-        alarm = {}
+        mongo_alarm = {}
 
         myquery = {"u_process": 'no'}
         records = list(known.find(myquery))
 
         for alarm in records:
-            new_alarm['u_id'] = alarm['u_id']
-            new_alarm['u_OID'] = alarm['u_OID']
-            new_alarm['u_originalType'] = alarm['u_originalType']
-            new_alarm['u_originalTypeDesc'] = alarm['u_originalTypeDesc']
-            new_alarm['u_deviceId'] = alarm['u_deviceId']
-            new_alarm['u_deviceIp'] = alarm['u_deviceIp']
-            new_alarm['u_deviceName'] = alarm['u_deviceName']
-            new_alarm['u_alarmLevel'] = alarm['u_alarmLevel']
-            new_alarm['u_alarmLevelDesc'] = alarm['u_alarmLevelDesc']
-            new_alarm['u_alarmCategory'] = alarm['u_alarmCategory']
-            new_alarm['u_faultTime'] = alarm['u_faultTime']
-            new_alarm['u_faultTimeDesc'] = alarm['u_faultTimeDesc']
-            new_alarm['u_recTime'] = alarm['u_recTime']
-            new_alarm['u_recTimeDesc'] = alarm['u_recTimeDesc']
-            new_alarm['u_recStatus'] = alarm['u_recStatus']
-            new_alarm['u_recStatusDesc'] = alarm['u_recStatusDesc']
-            new_alarm['u_recUserName'] = alarm['u_recUserName']
-            new_alarm['u_ackTime'] = alarm['u_ackTime']
-            new_alarm['u_ackTimeDesc'] = alarm['u_ackTimeDesc']
-            new_alarm['u_ackStatus'] = alarm['u_ackStatus']
-            new_alarm['u_ackStatusDesc'] = alarm['u_ackStatusDesc']
-            new_alarm['u_ackUserName'] = alarm['u_ackUserName']
-            new_alarm['u_alarmDesc'] = alarm['u_alarmDesc']
-            new_alarm['u_parentId'] = alarm['u_parentId']
-            new_alarm['u_somState'] = alarm['u_somState']
-            new_alarm['u_remark'] = alarm['u_remark']
-            new_alarm['u_holdInfo'] = alarm['u_holdInfo']
-            new_alarm['u_repeats'] = alarm['u_repeats']
-            new_alarm['u_resSourceType'] = alarm['u_resSourceType']
-            new_alarm['u_alarmDetail'] = alarm['u_alarmDetail']
-            new_alarm['u_process'] = 'no'
-            info = json.dumps(new_alarm)
+            mongo_alarm['u_id'] = alarm['u_id']
+            mongo_alarm['u_OID'] = alarm['u_OID']
+            mongo_alarm['u_originalType'] = alarm['u_originalType']
+            mongo_alarm['u_originalTypeDesc'] = alarm['u_originalTypeDesc']
+            mongo_alarm['u_deviceId'] = alarm['u_deviceId']
+            mongo_alarm['u_deviceIp'] = alarm['u_deviceIp']
+            mongo_alarm['u_deviceName'] = alarm['u_deviceName']
+            mongo_alarm['u_alarmLevel'] = alarm['u_alarmLevel']
+            mongo_alarm['u_alarmLevelDesc'] = alarm['u_alarmLevelDesc']
+            mongo_alarm['u_alarmCategory'] = alarm['u_alarmCategory']
+            mongo_alarm['u_faultTime'] = alarm['u_faultTime']
+            mongo_alarm['u_faultTimeDesc'] = alarm['u_faultTimeDesc']
+            mongo_alarm['u_recTime'] = alarm['u_recTime']
+            mongo_alarm['u_recTimeDesc'] = alarm['u_recTimeDesc']
+            mongo_alarm['u_recStatus'] = alarm['u_recStatus']
+            mongo_alarm['u_recStatusDesc'] = alarm['u_recStatusDesc']
+            mongo_alarm['u_recUserName'] = alarm['u_recUserName']
+            mongo_alarm['u_ackTime'] = alarm['u_ackTime']
+            mongo_alarm['u_ackTimeDesc'] = alarm['u_ackTimeDesc']
+            mongo_alarm['u_ackStatus'] = alarm['u_ackStatus']
+            mongo_alarm['u_ackStatusDesc'] = alarm['u_ackStatusDesc']
+            mongo_alarm['u_ackUserName'] = alarm['u_ackUserName']
+            mongo_alarm['u_alarmDesc'] = alarm['u_alarmDesc']
+            mongo_alarm['u_parentId'] = alarm['u_parentId']
+            mongo_alarm['u_somState'] = alarm['u_somState']
+            mongo_alarm['u_remark'] = alarm['u_remark']
+            mongo_alarm['u_holdInfo'] = alarm['u_holdInfo']
+            mongo_alarm['u_repeats'] = alarm['u_repeats']
+            mongo_alarm['u_resSourceType'] = alarm['u_resSourceType']
+            mongo_alarm['u_alarmDetail'] = alarm['u_alarmDetail']
+            mongo_alarm['u_process'] = 'no'
+            info = json.dumps(mongo_alarm)
             list_to_process.append(info)
-            new_alarm = {}
+            mongo_alarm = {}
 
         return (list_to_process)
