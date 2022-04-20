@@ -1,0 +1,22 @@
+version: 1.0
+
+description: A workflow to copy Aruba IMC devices from mongo and into servicenow.
+
+tasks:
+  getalerts:
+    action: arubaimc.get-mongo-devices
+    next:
+      - when: <% succeeded() %>
+        publish:
+          - devices: <% result().result %>
+        do: snowalerts
+
+  snowalerts:
+    with: <% ctx().devices %>
+    action: servicenow.create_record table="u_imc_devices" payload='<% item() %>'
+    next:
+      - when: <% succeeded() %>
+        do: processevents
+
+  processevents:
+    action: arubaimc.process_devices alarms=<% ctx().devices %>

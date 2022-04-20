@@ -26,21 +26,52 @@
 #                                                                              #
 #                                                                              #
 #------------------------------------------------------------------------------#
-
 from lib.actions import MongoBaseAction
+import json
 
 __all__ = [
-    'SetDb'
+    'GetDb'
 ]
 
 
-class SetDb(MongoBaseAction):
-    def run(self, devices):
+class GetDb(MongoBaseAction):
+    def run(self):
 
         mydb = self.dbclient["arubaimc"]
-        col = mydb["imc_devices"]
+        known = mydb["imc_devices"]
 
-        for item in devices:
-            col.updateOne({"_id": item['_id']}, {"$set": {"u_process": "yes"}})
+        list_to_process = []
+        mongo_alarm = {}
 
-        return ()
+        myquery = {"u_process": 'no'}
+        records = list(known.find(myquery))
+
+        for alarm in records:
+            mongo_alarm['u_id'] = alarm['u_id']
+            mongo_alarm['u_label'] = alarm['u_label']
+            mongo_alarm['u_ip'] = alarm['u_ip']
+            mongo_alarm['u_mask'] = alarm['u_mask']
+            mongo_alarm['u_status'] = alarm['u_status']
+            mongo_alarm['u_statusDesc'] = alarm['u_statusDesc']
+            mongo_alarm['u_sysName'] = alarm['u_sysName']
+            mongo_alarm['u_contact'] = alarm['u_contact']
+            mongo_alarm['u_location'] = alarm['u_location']
+            mongo_alarm['u_sysOid'] = alarm['u_sysOid']
+            mongo_alarm['u_sysDescription'] = alarm['u_sysDescription']
+            mongo_alarm['u_devCategoryImgSrc'] = alarm['u_devCategoryImgSrc']
+            mongo_alarm['u_topoIconName'] = alarm['u_topoIconName']
+            mongo_alarm['u_devPingState'] = alarm['u_devPingState']
+            mongo_alarm['u_categoryId'] = alarm['u_categoryId']
+            mongo_alarm['u_symbolId'] = alarm['u_symbolId']
+            mongo_alarm['u_symbolName'] = alarm['u_symbolName']
+            mongo_alarm['u_symbolType'] = alarm['u_symbolType']
+            mongo_alarm['u_symbolDesc'] = alarm['u_symbolDesc']
+            mongo_alarm['u_symbolLevel'] = alarm['u_symbolLevel']
+            mongo_alarm['u_parentId'] = alarm['u_parentId']
+            mongo_alarm['u_typeName'] = alarm['u_typeName']
+            mongo_alarm['u_process'] = 'no'
+            info = json.dumps(mongo_alarm)
+            list_to_process.append(info)
+            mongo_alarm = {}
+
+        return (list_to_process)

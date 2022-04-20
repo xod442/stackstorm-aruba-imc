@@ -26,21 +26,38 @@
 #                                                                              #
 #                                                                              #
 #------------------------------------------------------------------------------#
-
 from lib.actions import MongoBaseAction
+import json
 
 __all__ = [
-    'SetDb'
+    'GetDb'
 ]
 
 
-class SetDb(MongoBaseAction):
-    def run(self, devices):
+class GetDb(MongoBaseAction):
+    def run(self):
 
         mydb = self.dbclient["arubaimc"]
-        col = mydb["imc_devices"]
+        known = mydb["imc_realtime"]
 
-        for item in devices:
-            col.updateOne({"_id": item['_id']}, {"$set": {"u_process": "yes"}})
+        list_to_process = []
+        mongo_alarm = {}
 
-        return ()
+        myquery = {"u_process": 'no'}
+        records = list(known.find(myquery))
+
+        for alarm in records:
+            mongo_alarm['u_id'] = alarm['u_id']
+            mongo_alarm['u_severity'] = alarm['u_severity']
+            mongo_alarm['u_deviceDisplay'] = alarm['u_deviceDisplay']
+            mongo_alarm['u_faultDesc'] = alarm['u_faultDesc']
+            mongo_alarm['u_sourceIp'] = alarm['u_sourceIp']
+            mongo_alarm['u_faultTime'] = alarm['u_faultTime']
+            mongo_alarm['u_userAckType'] = alarm['u_userAckType']
+            mongo_alarm['userAckUserName'] = alarm['u_userAckUserName']
+            mongo_alarm['u_process'] = 'no'
+            info = json.dumps(mongo_alarm)
+            list_to_process.append(info)
+            mongo_alarm = {}
+
+        return (list_to_process)

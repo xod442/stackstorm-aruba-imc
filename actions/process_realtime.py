@@ -37,7 +37,7 @@ __all__ = [
 class LoadDb(MongoBaseAction):
     def run(self, realtime):
 
-        mydb = self.dbclient["app_db"]
+        mydb = self.dbclient["arubaimc"]
         col = mydb["imc_realtime"]
 
         for item in realtime:

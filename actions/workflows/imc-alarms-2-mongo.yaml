@@ -1,6 +1,6 @@
 version: 1.0
 
-description: A workflow to copy hpe nimble alarms into a mongo database.
+description: A workflow to copy aruba IMC alarms into a mongo database.
 
 tasks:
   getalarms:

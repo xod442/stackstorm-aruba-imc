@@ -1,0 +1,11 @@
+---
+name: load-imc-realtime
+pack: arubaimc
+description: load Aruba IMC alarms into the mongo db
+runner_type: python-script
+entry_point: load-imc-realtime.py
+enabled: true
+parameters:
+  alarms:
+    required: true
+    type: array

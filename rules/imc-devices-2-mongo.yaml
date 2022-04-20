@@ -1,0 +1,13 @@
+---
+name: "imc-devices-2-mongo"
+description: "Get all Aruba IMC devices and send to mongo."
+enabled: true
+
+trigger:
+  type: "core.st2.IntervalTimer"
+  parameters:
+    delta: 5
+    unit: minutes
+
+action:
+  ref: "arubaimc.imc-devices-2-mongo"

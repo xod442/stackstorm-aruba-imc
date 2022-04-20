@@ -1,0 +1,7 @@
+---
+name: get-mongo-devices
+pack: arubaimc
+description: Get Aruba IMC realtime alarms from mongo db
+runner_type: python-script
+entry_point: get-mongo-devices.py
+enabled: true

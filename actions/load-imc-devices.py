@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 #------------------------------------------------------------------------------#
 #                                                                              #
 #          ╔═╗┬─┐┬ ┬┌┐ ┌─┐  ╦╔╦╗╔═╗  ╔═╗┌─┐┌─┐┬┌─                              #
@@ -30,17 +29,48 @@
 from lib.actions import MongoBaseAction
 
 __all__ = [
-    'SetDb'
+    'LoadDb'
 ]
 
 
-class SetDb(MongoBaseAction):
+class LoadDb(MongoBaseAction):
     def run(self, devices):
 
         mydb = self.dbclient["arubaimc"]
-        col = mydb["imc_devices"]
+        known = mydb["imc_devices"]
 
-        for item in devices:
-            col.updateOne({"_id": item['_id']}, {"$set": {"u_process": "yes"}})
+        mongo_device = {}
 
-        return ()
+        for device in devices:
+            records = known.count_documents({"u_id": alarm[0]})
+            if records == 0:
+                mongo_device['u_id'] = alarm[0]
+                mongo_device['u_label'] = alarm[1]
+                mongo_device['u_ip'] = alarm[2]
+                mongo_device['u_mask'] = alarm[3]
+                mongo_device['u_status'] = alarm[4]
+                mongo_device['u_statusDesc'] = alarm[5]
+                mongo_device['u_sysName'] = alarm[6]
+                mongo_device['u_contact'] = alarm[7]
+                mongo_device['u_location'] = alarm[8]
+                mongo_device['u_sysOid'] = alarm[9]
+                mongo_device['u_sysDescription'] = alarm[10]
+                mongo_device['u_devCategoryImgSrc'] = alarm[11]
+                mongo_device['u_topoIconName'] = alarm[12]
+                mongo_device['u_devPingState'] = alarm[13]
+                mongo_device['u_categoryId'] = alarm[14]
+                mongo_device['u_symbolId'] = alarm[15]
+                mongo_device['u_symbolName'] = alarm[16]
+                mongo_device['u_symbolType'] = alarm[17]
+                mongo_device['u_symbolDesc'] = alarm[18]
+                mongo_device['u_symbolLevel'] = alarm[19]
+                mongo_device['u_parentId'] = alarm[20]
+                mongo_device['u_typeName'] = alarm[21]
+                mongo_device['u_process'] = 'no'
+                write_record = known.insert_one(mongo_device)
+                mongo_device = {}
+
+            else:
+                records = 'Fail to write mongo record, possible duplicate'
+                # write_record = process.insert_one(alarm)
+        return (records)

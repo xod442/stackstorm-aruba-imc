@@ -37,7 +37,7 @@ __all__ = [
 class LoadDb(MongoBaseAction):
     def run(self, alarms):
 
-        mydb = self.dbclient["app_db"]
+        mydb = self.dbclient["arubaimc"]
         col = mydb["imc_alarms"]
 
         for alarm in alarms:

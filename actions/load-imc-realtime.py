@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 #------------------------------------------------------------------------------#
 #                                                                              #
 #          ╔═╗┬─┐┬ ┬┌┐ ┌─┐  ╦╔╦╗╔═╗  ╔═╗┌─┐┌─┐┬┌─                              #
@@ -30,17 +29,34 @@
 from lib.actions import MongoBaseAction
 
 __all__ = [
-    'SetDb'
+    'LoadDb'
 ]
 
 
-class SetDb(MongoBaseAction):
-    def run(self, devices):
+class LoadDb(MongoBaseAction):
+    def run(self, alarms):
 
         mydb = self.dbclient["arubaimc"]
-        col = mydb["imc_devices"]
+        known = mydb["imc_realtime"]
 
-        for item in devices:
-            col.updateOne({"_id": item['_id']}, {"$set": {"u_process": "yes"}})
+        mongo_alarm = {}
 
-        return ()
+        for alarm in alarms:
+            records = known.count_documents({"u_id": alarm[0]})
+            if records == 0:
+                mongo_alarm['u_id'] = alarm[0]
+                mongo_alarm['u_severity'] = alarm[1]
+                mongo_alarm['u_deviceDisplay'] = alarm[2]
+                mongo_alarm['u_faultDesc'] = alarm[3]
+                mongo_alarm['u_sourceIp'] = alarm[4]
+                mongo_alarm['u_faultTime'] = alarm[5]
+                mongo_alarm['u_userAckType'] = alarm[6]
+                mongo_alarm['u_userAckUserName'] = alarm[7]
+                mongo_alarm['u_process'] = 'no'
+                write_record = known.insert_one(mongo_alarm)
+                mongo_alarm = {}
+
+            else:
+                records = 'Fail to write mongo record, possible duplicate'
+                # write_record = process.insert_one(alarm)
+        return (records)

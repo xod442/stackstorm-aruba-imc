@@ -1,0 +1,13 @@
+---
+name: "mongo-realtime-2-snow"
+description: "Get mongo realtime alarms and send to servicenow."
+enabled: true
+
+trigger:
+  type: "core.st2.IntervalTimer"
+  parameters:
+    delta: 5
+    unit: minutes
+
+action:
+  ref: "arubaimc.mongo-realtime-2-snow"

@@ -1,0 +1,6 @@
+---
+name: imc-realtime-2-mongo
+description: A workflow for getting Aruba IMC realtime alarms into a mongo database.
+runner_type: orquesta
+entry_point: workflows/imc-realtime-2-mongo.yaml
+enabled: true

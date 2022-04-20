@@ -1,7 +1,7 @@
 ---
 name: "mongo-alarms-2-snow"
 description: "Get mongo alarms and send to servicenow."
-enabled: false
+enabled: true
 
 trigger:
   type: "core.st2.IntervalTimer"

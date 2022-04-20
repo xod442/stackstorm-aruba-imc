@@ -1,0 +1,11 @@
+---
+name: load-imc-devices
+pack: arubaimc
+description: load Aruba IMC alarms into the mongo db
+runner_type: python-script
+entry_point: load-imc-devices.py
+enabled: true
+parameters:
+  devices:
+    required: true
+    type: array
