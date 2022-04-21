@@ -29,7 +29,7 @@
 
 import urllib3
 from lib.actions import ArubaImcBaseAction
-from pyarubaimc.plat.alarms import *
+from pyarubaimc.alarms import *
 urllib3.disable_warnings()
 
 __all__ = [
