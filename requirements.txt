@@ -1,2 +1,2 @@
-pyarubaimc
+pyarubaimc==0.1.6
 pymongo
