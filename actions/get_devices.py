@@ -29,7 +29,7 @@
 
 import urllib3
 from lib.actions import ArubaImcBaseAction
-from pyhpeimc.plat.device import *
+from pyarubaimc.plat.device import *
 urllib3.disable_warnings()
 
 __all__ = [

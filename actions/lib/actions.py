@@ -18,7 +18,7 @@
 # __email__ = "rick@riickkauffman.com"
 
 from pymongo import MongoClient
-from pyhpeimc.auth import *
+from pyarubaimc.auth import *
 from st2common.runners.base_action import Action
 
 __all__ = [
