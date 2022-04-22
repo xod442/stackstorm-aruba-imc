@@ -53,7 +53,7 @@ class GetDb(MongoBaseAction):
             mongo_alarm['u_sourceIp'] = alarm['u_sourceIp']
             mongo_alarm['u_faultTime'] = alarm['u_faultTime']
             mongo_alarm['u_process'] = 'no'
-            info = json.dumps(mongo_alarm)
+            info = json.loads(mongo_alarm)
             list_to_process.append(info)
             mongo_alarm = {}
 
