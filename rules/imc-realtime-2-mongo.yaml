@@ -1,7 +1,7 @@
 ---
 name: "imc-realtime-2-mongo"
 description: "Get all Aruba IMC realtime alarms and send to mongo."
-enabled: true
+enabled: false
 
 trigger:
   type: "core.st2.IntervalTimer"

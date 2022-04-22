@@ -1,7 +1,7 @@
 ---
 name: "mongo-realtime-2-snow"
 description: "Get mongo realtime alarms and send to servicenow."
-enabled: true
+enabled: false
 
 trigger:
   type: "core.st2.IntervalTimer"
