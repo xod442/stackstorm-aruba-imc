@@ -42,7 +42,8 @@ class LoadDb(MongoBaseAction):
         mongo_device = {}
 
         for device in devices:
-            if known.count_documents({ 'u_id': device['id'] }, limit = 1) == 0:
+            message = 'processing documents'
+            if known.count_documents({ 'u_id': device[0] }, limit = 1) == 0:
                 mongo_device['u_id'] = alarm[0]
                 mongo_device['u_label'] = alarm[1]
                 mongo_device['u_ip'] = alarm[2]
@@ -70,6 +71,6 @@ class LoadDb(MongoBaseAction):
                 mongo_device = {}
 
             else:
-                records = 'Fail to write mongo record, possible duplicate'
+                message = 'Fail to write mongo record, possible duplicate'
                 # write_record = process.insert_one(alarm)
-        return (records)
+        return (message)

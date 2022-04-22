@@ -42,7 +42,8 @@ class LoadDb(MongoBaseAction):
         mongo_alarm = {}
 
         for alarm in alarms:
-            if known.count_documents({ 'u_id': alarm['id'] }, limit = 1) == 0:
+            message = 'processing documents'
+            if known.count_documents({ 'u_id': alarm[0] }, limit = 1) == 0:
                 mongo_alarm['u_id'] = alarm[0]
                 mongo_alarm['u_severity'] = alarm[1]
                 mongo_alarm['u_deviceDisplay'] = alarm[2]
@@ -56,6 +57,6 @@ class LoadDb(MongoBaseAction):
                 mongo_alarm = {}
 
             else:
-                records = 'Fail to write mongo record, possible duplicate'
-                # write_record = process.insert_one(alarm)
-        return (records)
+                message = 'Fail to write mongo record, possible duplicate'
+
+        return (message)
