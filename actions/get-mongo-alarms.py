@@ -78,8 +78,7 @@ class GetDb(MongoBaseAction):
             mongo_alarm['u_resSourceType'] = alarm['u_resSourceType']
             mongo_alarm['u_alarmDetail'] = alarm['u_alarmDetail']
             mongo_alarm['u_process'] = 'no'
-            info = json.dumps(mongo_alarm)
-            list_to_process.append(info)
+            list_to_process.append(mongo_alarm)
             mongo_alarm = {}
 
         return (list_to_process)

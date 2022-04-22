@@ -53,8 +53,7 @@ class GetDb(MongoBaseAction):
             mongo_alarm['u_recStatusDesc'] = alarm['u_recStatusDesc']
             mongo_alarm['u_alarmDesc'] = alarm['u_alarmDesc']
             mongo_alarm['u_process'] = 'no'
-            info = json.loads(mongo_alarm)
-            list_to_process.append(info)
+            list_to_process.append(mongo_alarm)
             mongo_alarm = {}
 
         return (list_to_process)
