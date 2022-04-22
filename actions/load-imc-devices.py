@@ -44,33 +44,32 @@ class LoadDb(MongoBaseAction):
         for device in devices:
             message = 'processing documents'
             if known.count_documents({ 'u_id': device[0] }, limit = 1) == 0:
-                mongo_device['u_id'] = alarm[0]
-                mongo_device['u_label'] = alarm[1]
-                mongo_device['u_ip'] = alarm[2]
-                mongo_device['u_mask'] = alarm[3]
-                mongo_device['u_status'] = alarm[4]
-                mongo_device['u_statusDesc'] = alarm[5]
-                mongo_device['u_sysName'] = alarm[6]
-                mongo_device['u_contact'] = alarm[7]
-                mongo_device['u_location'] = alarm[8]
-                mongo_device['u_sysOid'] = alarm[9]
-                mongo_device['u_sysDescription'] = alarm[10]
-                mongo_device['u_devCategoryImgSrc'] = alarm[11]
-                mongo_device['u_topoIconName'] = alarm[12]
-                mongo_device['u_devPingState'] = alarm[13]
-                mongo_device['u_categoryId'] = alarm[14]
-                mongo_device['u_symbolId'] = alarm[15]
-                mongo_device['u_symbolName'] = alarm[16]
-                mongo_device['u_symbolType'] = alarm[17]
-                mongo_device['u_symbolDesc'] = alarm[18]
-                mongo_device['u_symbolLevel'] = alarm[19]
-                mongo_device['u_parentId'] = alarm[20]
-                mongo_device['u_typeName'] = alarm[21]
+                mongo_device['u_id'] = device[0]
+                mongo_device['u_label'] = device[1]
+                mongo_device['u_ip'] = device[2]
+                mongo_device['u_mask'] = device[3]
+                mongo_device['u_status'] = device[4]
+                mongo_device['u_statusDesc'] = device[5]
+                mongo_device['u_sysName'] = device[6]
+                mongo_device['u_contact'] = device[7]
+                mongo_device['u_location'] = device[8]
+                mongo_device['u_sysOid'] = device[9]
+                mongo_device['u_sysDescription'] = device[10]
+                mongo_device['u_devCategoryImgSrc'] = device[11]
+                mongo_device['u_topoIconName'] = device[12]
+                mongo_device['u_devPingState'] = device[13]
+                mongo_device['u_categoryId'] = device[14]
+                mongo_device['u_symbolId'] = device[15]
+                mongo_device['u_symbolName'] = device[16]
+                mongo_device['u_symbolType'] = device[17]
+                mongo_device['u_symbolDesc'] = device[18]
+                mongo_device['u_symbolLevel'] = device[19]
+                mongo_device['u_parentId'] = device[20]
+                mongo_device['u_typeName'] = device[21]
                 mongo_device['u_process'] = 'no'
                 write_record = known.insert_one(mongo_device)
                 mongo_device = {}
 
             else:
                 message = 'Fail to write mongo record, possible duplicate'
-                # write_record = process.insert_one(alarm)
         return (message)
