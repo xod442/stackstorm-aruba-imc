@@ -8,8 +8,8 @@ tasks:
     next:
       - when: <% succeeded() %>
         publish:
-          - alarms: <% result().result %>
+          - realtime: <% result().result %>
         do: sendmongo
 
   sendmongo:
-    action: arubaimc.load-imc-realtime alarms=<% ctx().alarms %>
+    action: arubaimc.load-imc-realtime realtime=<% ctx().realtime %>
