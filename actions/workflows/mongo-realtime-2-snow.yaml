@@ -4,7 +4,7 @@ description: A workflow to copy Aruba IMC realtime alarms from mongo and into se
 
 tasks:
   getalerts:
-    action: arubaimc.get-mongo-realtime
+    action: arubaimc.get-mongo-realtime-4-snow
     next:
       - when: <% succeeded() %>
         publish:

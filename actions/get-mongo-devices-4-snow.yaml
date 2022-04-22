@@ -1,0 +1,7 @@
+---
+name: get-mongo-devices-4-snow
+pack: arubaimc
+description: Get Aruba IMC devices from mongo db prep for servicenow
+runner_type: python-script
+entry_point: get-mongo-devices-4-snow.py
+enabled: true

@@ -4,7 +4,7 @@ description: A workflow to copy Aruba IMC alarms from mongo and into servicenow.
 
 tasks:
   getalerts:
-    action: arubaimc.get-mongo-alarms
+    action: arubaimc.get-mongo-alarms-4-snow
     next:
       - when: <% succeeded() %>
         publish:

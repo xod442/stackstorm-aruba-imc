@@ -4,7 +4,7 @@ description: A workflow to copy Aruba IMC devices from mongo and into servicenow
 
 tasks:
   getalerts:
-    action: arubaimc.get-mongo-devices
+    action: arubaimc.get-mongo-devices-4-snow
     next:
       - when: <% succeeded() %>
         publish:
