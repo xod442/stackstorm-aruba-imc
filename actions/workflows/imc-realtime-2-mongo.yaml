@@ -12,4 +12,4 @@ tasks:
         do: sendmongo
 
   sendmongo:
-    action: arubaimc.load-imc-realtime realtime=<% ctx().realtime %>
+    action: arubaimc.load-imc-realtime alarms=<% ctx().realtime %>

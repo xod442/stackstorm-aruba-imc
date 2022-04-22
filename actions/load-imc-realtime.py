@@ -36,14 +36,13 @@ __all__ = [
 class LoadDb(MongoBaseAction):
     def run(self, alarms):
 
-        mydb = self.dbclient["arubaimc"]
-        known = mydb["imc_realtime"]
+        db = self.dbclient["arubaimc"]
 
         mongo_alarm = {}
 
         for alarm in alarms:
             message = 'processing documents'
-            if known.count_documents({ 'u_id': alarm[0] }, limit = 1) == 0:
+            if db.imc_realtime.count_documents({ 'u_id': alarm[0] }, limit = 1) == 0:
                 mongo_alarm['u_id'] = alarm[0]
                 mongo_alarm['u_severity'] = alarm[1]
                 mongo_alarm['u_deviceDisplay'] = alarm[2]
@@ -53,7 +52,7 @@ class LoadDb(MongoBaseAction):
                 mongo_alarm['u_userAckType'] = alarm[6]
                 mongo_alarm['u_userAckUserName'] = alarm[7]
                 mongo_alarm['u_process'] = 'no'
-                write_record = known.insert_one(mongo_alarm)
+                write_record = db.imc_realtime.insert_one(mongo_alarm)
                 mongo_alarm = {}
 
             else:

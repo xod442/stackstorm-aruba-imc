@@ -36,14 +36,14 @@ __all__ = [
 class LoadDb(MongoBaseAction):
     def run(self, devices):
 
-        mydb = self.dbclient["arubaimc"]
-        known = mydb["imc_devices"]
+        db = self.dbclient["arubaimc"]
+
 
         mongo_device = {}
 
         for device in devices:
             message = 'processing documents'
-            if known.count_documents({ 'u_id': device[0] }, limit = 1) == 0:
+            if db.imc_devices.count_documents({ 'u_id': device[0] }, limit = 1) == 0:
                 mongo_device['u_id'] = device[0]
                 mongo_device['u_label'] = device[1]
                 mongo_device['u_ip'] = device[2]
@@ -67,7 +67,7 @@ class LoadDb(MongoBaseAction):
                 mongo_device['u_parentId'] = device[20]
                 mongo_device['u_typeName'] = device[21]
                 mongo_device['u_process'] = 'no'
-                write_record = known.insert_one(mongo_device)
+                write_record = db.imc_devices.insert_one(mongo_device)
                 mongo_device = {}
 
             else:
