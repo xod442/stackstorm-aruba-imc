@@ -42,8 +42,7 @@ class LoadDb(MongoBaseAction):
         mongo_device = {}
 
         for device in devices:
-            records = known.count_documents({"u_id": alarm[0]})
-            if records == 0:
+            if known.count_documents({ 'u_id': device['id'] }, limit = 1) == 0:
                 mongo_device['u_id'] = alarm[0]
                 mongo_device['u_label'] = alarm[1]
                 mongo_device['u_ip'] = alarm[2]

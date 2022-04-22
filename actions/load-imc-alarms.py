@@ -42,8 +42,7 @@ class LoadDb(MongoBaseAction):
         mongo_alarm = {}
 
         for alarm in alarms:
-            records = known.count_documents({"u_id": alarm[0]})
-            if records == 0:
+            if known.count_documents({ 'u_id': alarm['id'] }, limit = 1) == 0:
                 mongo_alarm['u_id'] = alarm[0]
                 mongo_alarm['u_OID'] = alarm[1]
                 mongo_alarm['u_originalType'] = alarm[2]

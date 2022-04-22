@@ -4,6 +4,7 @@ import requests
 from pyarubaimc.auth import *
 from pyarubaimc.alarms import *
 from pyarubaimc.device import *
+from pymongo import MongoClient
 
 imc_user = "admin"
 imc_passwd = "ilike2Rock@"
@@ -12,11 +13,8 @@ varz = []
 data = {}
 dump = []
 imc_test_url = 'http://'+imc_host+':8080'
+dbclient = MongoClient('mongodb://localhost:27017/')
 ## Configuring a connection to the VSD API
-
-
-
-
 
 
 auth = IMCAuth("http://", imc_host, "8080", imc_user, imc_passwd)
@@ -26,12 +24,22 @@ count = 1
 print(auth)
 alarms = get_alarms('admin', auth.creds, auth.url)
 print('--------------get_alarms------<<<<<<<<<>>>>>>>>>>>----------------------')
-print(alarms)
 print(len(alarms))
 print(type(alarms))
 
-print('------------------------------<<<<<<<<<>>>>>>>>>>>----------------------')
+mydb = dbclient["arubaimc"]
+known = mydb["imc_alarms"]
+print(known)
 
+mongo_alarm = {}
+
+for alarm in alarms:
+    if known.count_documents({ 'u_id': alarm['id'] }, limit = 1) == 0:
+        print(alarm['id'])
+        print('--------no record----------------------<<<<<<<<<>>>>>>>>>>>----------------------')
+
+print('------------------------------<<<<<<<<<>>>>>>>>>>>----------------------')
+'''
 realtime = get_realtime_alarm('admin', auth.creds, auth.url)
 print(realtime)
 print(len(realtime))
@@ -45,7 +53,7 @@ print(len(devices))
 print(type(devices))
 print('------------------------------<<<<<<<<<>>>>>>>>>>>----------------------')
 print('------------------------------<<<<<<<<<>>>>>>>>>>>----------------------')
-'''
+
 for item in devices:
     print(item['label'])
 
