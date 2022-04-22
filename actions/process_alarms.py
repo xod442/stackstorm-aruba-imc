@@ -41,6 +41,6 @@ class LoadDb(MongoBaseAction):
         col = mydb["imc_alarms"]
 
         for alarm in alarms:
-            col.updateOne({"u_id": alarm['u_id']}, {"$set": {"u_process": "yes"}})
+            col.update({"u_id": alarm['u_id']}, {"$set": {"u_process": "yes"}})
 
         return ()
