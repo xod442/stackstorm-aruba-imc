@@ -37,10 +37,12 @@ __all__ = [
 class LoadDb(MongoBaseAction):
     def run(self, alarms):
 
-        mydb = self.dbclient["arubaimc"]
-        col = mydb["imc_alarms"]
+        db = self.dbclient["arubaimc"]
 
         for alarm in alarms:
-            col.update({"u_id": alarm['u_id']}, {"$set": {"u_process": "yes"}})
+            myquery = {"u_id": alarm['u_id']}
+            newvalues = {"$set": {"u_process": "yes" }}
+            db.imc_alarms.update_one(myquery, newvalues)            
+
 
         return ()

@@ -37,10 +37,11 @@ __all__ = [
 class SetDb(MongoBaseAction):
     def run(self, devices):
 
-        mydb = self.dbclient["arubaimc"]
-        col = mydb["imc_devices"]
+        db = self.dbclient["arubaimc"]
 
         for item in devices:
-            col.update({"u_id": item['u_id']}, {"$set": {"u_process": "yes"}})
+            myquery = {"u_id": item['u_id']}
+            newvalues = {"$set": {"u_process": "yes" }}
+            db.imc_devices.update_one(myquery, newvalues) 
 
         return ()

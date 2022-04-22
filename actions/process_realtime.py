@@ -37,10 +37,11 @@ __all__ = [
 class LoadDb(MongoBaseAction):
     def run(self, realtime):
 
-        mydb = self.dbclient["arubaimc"]
-        col = mydb["imc_realtime"]
+        db = self.dbclient["arubaimc"]
 
         for item in realtime:
-            col.update({"u_id": item['u_id']}, {"$set": {"u_process": "yes"}})
+            myquery = {"u_id": item['u_id']}
+            newvalues = {"$set": {"u_process": "yes" }}
+            db.imc_realtime.update_one(myquery, newvalues)
 
         return ()
