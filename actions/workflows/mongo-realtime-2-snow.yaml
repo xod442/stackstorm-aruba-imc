@@ -8,15 +8,15 @@ tasks:
     next:
       - when: <% succeeded() %>
         publish:
-          - alarms: <% result().result %>
+          - realtime: <% result().result %>
         do: snowalerts
 
   snowalerts:
-    with: <% ctx().alarms %>
+    with: <% ctx().realtime %>
     action: servicenow.create_record table="u_imc_realtime" payload='<% item() %>'
     next:
       - when: <% succeeded() %>
         do: processevents
 
   processevents:
-    action: arubaimc.process_realtime alarms=<% ctx().alarms %>
+    action: arubaimc.process_realtime realtime=<% ctx().alarms %>

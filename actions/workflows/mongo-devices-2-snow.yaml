@@ -19,4 +19,4 @@ tasks:
         do: processevents
 
   processevents:
-    action: arubaimc.process_devices alarms=<% ctx().devices %>
+    action: arubaimc.process_devices devices=<% ctx().devices %>
