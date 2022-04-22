@@ -41,6 +41,6 @@ class LoadDb(MongoBaseAction):
         col = mydb["imc_realtime"]
 
         for item in realtime:
-            col.updateOne({"_id": item['_id']}, {"$set": {"u_process": "yes"}})
+            col.updateOne({"u_id": item['u_id']}, {"$set": {"u_process": "yes"}})
 
         return ()

@@ -19,4 +19,4 @@ tasks:
         do: processevents
 
   processevents:
-    action: arubaimc.process_realtime realtime=<% ctx().alarms %>
+    action: arubaimc.process_realtime realtime=<% ctx().realtime %>
