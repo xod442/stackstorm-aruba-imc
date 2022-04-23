@@ -51,7 +51,7 @@ class GetDb(MongoBaseAction):
             mongo_alarm['u_deviceip'] = str(alarm['u_deviceIp'])
             mongo_alarm['u_faulttimedesc'] = str(alarm['u_faultTimeDesc'])
             mongo_alarm['u_recstatusdesc'] = str(alarm['u_recStatusDesc'])
-            mongo_alarm['u_alarmdesc'] = str(alarm['u_alarmDesc'])S
+            mongo_alarm['u_alarmdesc'] = str(alarm['u_alarmDesc'])
             list_to_process.append(mongo_alarm)
             mongo_alarm = {}
 
