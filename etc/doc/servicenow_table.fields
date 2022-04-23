@@ -25,3 +25,7 @@ severity
 sourceIp
 faultDesc
 faultTime
+
+Snow test actions
+
+st2 run servicenow.create_record table="u_imc_realtime" payload='({ u_id" : "631", "u_severity" : "1", "u_deviceDisplay" : "10.132.0.76(10.132.0.76)", "u_faultDesc" : "Device \"10.132.0.76\" does not respond to Ping packets.", "u_sourceIp" : "10.132.0.76", "u_faultTime" : "1650387034", "u_userAckType" : "0", "u_userAckUserName" : ""})'

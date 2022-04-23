@@ -46,6 +46,8 @@ class LoadDb(MongoBaseAction):
                 mongo_alarm['u_id'] = alarm[0]
                 mongo_alarm['u_severity'] = alarm[1]
                 mongo_alarm['u_deviceDisplay'] = alarm[2]
+                filter = ''.join([chr(i) for i in range(1, 32)])
+                alarm[3].translate(str.maketrans('', '', filter))
                 mongo_alarm['u_faultDesc'] = alarm[3]
                 mongo_alarm['u_sourceIp'] = alarm[4]
                 mongo_alarm['u_faultTime'] = alarm[5]
