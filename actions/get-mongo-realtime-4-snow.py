@@ -45,14 +45,13 @@ class GetDb(MongoBaseAction):
 
         myquery = {"u_process": 'no'}
         records = list(known.find(myquery))
-
+        # set lowercase variable names for servicenow
         for alarm in records:
             mongo_alarm['u_id'] = alarm['u_id']
             mongo_alarm['u_severity'] = alarm['u_severity']
-            mongo_alarm['u_faultDesc'] = alarm['u_faultDesc']
-            mongo_alarm['u_sourceIp'] = alarm['u_sourceIp']
-            mongo_alarm['u_faultTime'] = alarm['u_faultTime']
-            mongo_alarm['u_process'] = 'no'
+            mongo_alarm['u_fault_desc'] = alarm['u_faultDesc']
+            mongo_alarm['u_source_ip'] = alarm['u_sourceIp']
+            mongo_alarm['u_fault_time'] = alarm['u_faultTime']
             list_to_process.append(mongo_alarm)
             mongo_alarm = {}
 
