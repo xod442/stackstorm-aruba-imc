@@ -49,9 +49,9 @@ class GetDb(MongoBaseAction):
         for alarm in records:
             mongo_alarm['u_id'] = alarm['u_id']
             mongo_alarm['u_severity'] = alarm['u_severity']
-            mongo_alarm['u_fault_desc'] = alarm['u_faultDesc']
-            mongo_alarm['u_source_ip'] = alarm['u_sourceIp']
-            mongo_alarm['u_fault_time'] = alarm['u_faultTime']
+            mongo_alarm['u_faultdesc'] = alarm['u_faultDesc']
+            mongo_alarm['u_sourceip'] = alarm['u_sourceIp']
+            mongo_alarm['u_faulttime'] = alarm['u_faultTime']
             list_to_process.append(mongo_alarm)
             mongo_alarm = {}
 

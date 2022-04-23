@@ -51,8 +51,8 @@ class GetDb(MongoBaseAction):
             mongo_alarm['u_label'] = alarm['u_label']
             mongo_alarm['u_ip'] = alarm['u_ip']
             mongo_alarm['u_mask'] = alarm['u_mask']
-            mongo_alarm['u_status_desc'] = alarm['u_statusDesc']
-            mongo_alarm['u_dev_category_img_src'] = alarm['u_devCategoryImgSrc']
+            mongo_alarm['u_statusdesc'] = alarm['u_statusDesc']
+            mongo_alarm['u_devcategoryimgsrc'] = alarm['u_devCategoryImgSrc']
             list_to_process.append(mongo_alarm)
             mongo_alarm = {}
 
