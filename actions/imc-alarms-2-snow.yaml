@@ -1,0 +1,6 @@
+---
+name: imc-alarms-2-snow
+description: A workflow for getting Aruba IMC realtime alarms into a mongo database then servicenow.
+runner_type: orquesta
+entry_point: workflows/imc-alarms-2-snow.yaml
+enabled: true
