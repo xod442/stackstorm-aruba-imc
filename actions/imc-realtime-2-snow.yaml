@@ -2,5 +2,5 @@
 name: imc-realtime-2-snow
 description: A workflow for getting Aruba IMC realtime alarms into a mongo database then ervicenow.
 runner_type: orquesta
-entry_point: workflows/imc-realtime-2-mongo.yaml
+entry_point: workflows/imc-realtime-2-snow.yaml
 enabled: true
