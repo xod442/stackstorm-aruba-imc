@@ -1,5 +1,5 @@
 ---
-name: "imc-realtime-2-snow"
+name: "imc-alarms-2-snow"
 description: "Get all Aruba IMC alarms and send to mongo then servicenow."
 enabled: false
 
