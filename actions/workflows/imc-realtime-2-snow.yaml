@@ -1,0 +1,36 @@
+version: 1.0
+
+description: A workflow to copy aruba IMC realtime alarms into a mongo database.
+
+tasks:
+  getalarms:
+    action: arubaimc.get_realtime
+    next:
+      - when: <% succeeded() %>
+        publish:
+          - realtime: <% result().result %>
+        do: sendmongo
+
+  sendmongo:
+    action: arubaimc.load-imc-realtime alarms=<% ctx().realtime %>
+    next:
+      - when: <% succeeded() %>
+      do: getdocs4snow
+
+  getdocs4snow:
+    action: arubaimc.get-mongo-realtime-4-snow
+    next:
+      - when: <% succeeded() %>
+        publish:
+          - realtime: <% result().result %>
+        do: snowalerts
+
+  snowalerts:
+    with: <% ctx().realtime %>
+    action: servicenow.create_record table="u_imc_realtime" payload='<% item() %>'
+    next:
+      - when: <% succeeded() %>
+        do: processevents
+
+  processevents:
+    action: arubaimc.process_realtime realtime=<% ctx().realtime %>
